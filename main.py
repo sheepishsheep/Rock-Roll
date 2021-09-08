@@ -1,7 +1,6 @@
-#D&D Discord Bot - Music playing and gifs
+#D&D Discord Bot - For playing music and rolling dice
 #Author: Z. Wool
-#End goals: 
-
+ 
 
 import discord #discord lib
 import giphy_client #gif lib
@@ -9,7 +8,8 @@ import os #token lib
 import random #random lib
 import requests #request lib
 import json #json lib
-import youtube-dl #
+import re
+
 
 from replit import db #replit database lib
 
@@ -20,22 +20,6 @@ from discord.ext import commands #discord bot commands
 client =discord.Client()
 
 
-#Starting PC values
-starter_ecrg =[
-  "Cheer up!",
-  "Hang in there",
-  "Hold on there kitten",
-  "You are adequate"
-]
-
-#CHANGE to update PC traits (HP, etc)
-def update_encouragements(encouraging_message):
-  if "encouragements" in db.keys():
-    encouragements=db["encouragements"]
-    encouragements.append(encouraging_message)
-    db["encouragements"]=encouragements
-  else:
-    db["encouragements"]=[encouraging_message]
 
 
 #show we have logged into discord server
@@ -139,11 +123,28 @@ async def on_message(msg):
           await msg.channel.send("you rolled "+str(diceroll))
       except Exception:
         await msg.channel.send("Please enter dice roll in the format of '$roll XdY+Z'")
+  #for dice rolls without modifiers
+  #Edit so only works if file is uploaded to databace
   
   
   
-    
    
+    
+    
+    
+    
+
+
+
+
+
+
+
+  
+
+  
+
+
 
 #retried token ford discord
 client.run(os.getenv('TOKEN'))
